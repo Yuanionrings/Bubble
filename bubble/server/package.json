@@ -1,0 +1,19 @@
+{
+  "name": "bubble",
+  "version": "0.1.0",
+  "description": "Schedule Management Application",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "Yuan Gao",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.17",
+    "nodemon": "^2.0.7"
+  }
+}
