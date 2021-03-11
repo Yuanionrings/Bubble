@@ -1,7 +1,8 @@
 // Sign up schema - what to collect from user
 const mongoose = require('mongoose')
 
-const signUpTemplate = new mongoose.Schema({
+//Defines mongoose schema for user accounts
+const UserSchema = new mongoose.Schema({
     fullName:{
         type: String,
         required: true
@@ -20,8 +21,8 @@ const signUpTemplate = new mongoose.Schema({
     },
     date:{
         type: Date,
-        dafault: Date.now
+        default: Date.now
     }
 })
 
-module.exports = mongoose.model('mytable', signUpTemplate)
+module.exports = mongoose.model('users', UserSchema)
