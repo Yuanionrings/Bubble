@@ -8,6 +8,8 @@ import { registerUser } from '../../actions/userAuthActions';
 
 import loginImg from "../../resources/soap.png";
 
+import "./style.scss";
+
 class Register extends Component {
     constructor() {
         super()
@@ -64,65 +66,68 @@ class Register extends Component {
         return(
             <div className="base-container">
 
-                <div className="header">Register</div>
+                <div className="container">
 
-                <div className='content'>
-                    <div className="image">
-                        <img src={loginImg} />
-                    </div>
+                    <div className="header">Register</div>
 
-                    <div className='form'>
-                        <form onSubmit={this.onSubmit}>
-                            <div className="form-group">
-                                <label htmlFor="full name">Display Name:</label>
-                                <input type = 'text'
-                                placeholder='Full Name'
-                                id='fullName'
-                                onChange={this.onChange}
-                                value={fullName}
-                                //className='form-control form-group'
-                                />
-                            </div>
+                    <div className='content'>
+                        <div className="image">
+                            <img src={loginImg} />
+                        </div>
 
-                            <div className="form-group">
-                                <label htmlFor="username">Username:</label>
-                                <input type = 'text'
-                                placeholder='Username'
-                                id='username'
-                                onChange={this.onChange}
-                                value={username}
-                                error={errors}
-                                //className='form-control form-group'
-                                />
-                                <span className='red-text'>
-                                    {errors.username}
-                                </span>
-                            </div>
+                        <div className='form'>
+                            <form onSubmit={this.onSubmit}>
+                                <div className="form-group">
+                                    <label htmlFor="full name">Display Name:</label>
+                                    <input type = 'text'
+                                    placeholder='Name'
+                                    id='fullName'
+                                    onChange={this.onChange}
+                                    value={fullName}
+                                    //className='form-control form-group'
+                                    />
+                                </div>
 
-                            <div className="form-group">
-                                <label htmlFor="email">Email:</label>
-                                <input type = 'text'
-                                placeholder='Email'
-                                id='email'
-                                onChange={this.onChange}
-                                value={email}
-                                //className='form-control form-group'
-                                />
-                            </div>
+                                <div className="form-group">
+                                    <label htmlFor="username">Username:</label>
+                                    <input type = 'text'
+                                    placeholder='Username'
+                                    id='username'
+                                    onChange={this.onChange}
+                                    value={username}
+                                    error={errors}
+                                    //className='form-control form-group'
+                                    />
+                                    <span className='red-text'>
+                                        {errors.username}
+                                    </span>
+                                </div>
 
-                            <div className="form-group">
-                                <label htmlFor="password">Password:</label>
-                                <input type = 'password'
-                                placeholder='Password'
-                                id='password'
-                                onChange={this.onChange}
-                                value={password}
-                                //className='form-control form-group'
-                                />
-                            </div>
+                                <div className="form-group">
+                                    <label htmlFor="email">Email:</label>
+                                    <input type = 'text'
+                                    placeholder='Email'
+                                    id='email'
+                                    onChange={this.onChange}
+                                    value={email}
+                                    //className='form-control form-group'
+                                    />
+                                </div>
 
-                            <input type='submit' className='btn btn-danger btn-block' value='Register'/>
-                        </form>
+                                <div className="form-group">
+                                    <label htmlFor="password">Password:</label>
+                                    <input type = 'password'
+                                    placeholder='Password'
+                                    id='password'
+                                    onChange={this.onChange}
+                                    value={password}
+                                    //className='form-control form-group'
+                                    />
+                                </div>
+
+                                <input type='submit' className='btn' value='Register'/>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,64 +1,105 @@
 .base-container {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  //background-color: #3498db; B7DEFC
+  background-color: #B7DEFC;
+  padding: 6em 1em;
 
-  .header {
-    font-size: 24px;
-    font-weight: bold;
-    font-family: "Open Sans", sans-serif;
-  }
-
-  .content {
+  .container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #49b1f7;
+    box-shadow: 10px 10px 12px 5px rgba(15, 15, 15, 0.2);
+    border-radius: 100px;
+    position: relative;
+    z-index: 99;
+    width: 30%;
+    height: 100%;
+    z-index: 99;
+    padding: 80px 20px;
 
-    .image {
-      width: 21em;
-        img {
-          width: 100%;
-          height: 100%;
-        }
+    .header {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      font-family: "Open Sans", sans-serif;
     }
 
-    .form {
-      margin-top: 2em;
+    .content {
       display: flex;
       flex-direction: column;
       align-items: center;
+      color: #fff;
 
-      .form-group {
+      .image {
+        padding: 1em 1px;
+        width: 10em;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+      }
+
+      .form {
+        margin-top: 1em;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        width: fit-content;
+        align-items: center;
 
-        label {
-          font-size: 20px;
-          font-weight: bold;
-        }
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: fit-content;
 
-        input {
-          margin-top: -5px;
-          min-width: 18em;
-          height: 37px;
-          padding: 0px 10px;
-          font-size: 16px;
-          font-family: "Open Sans", sans-serif;
-          background-color: #f3f3f3;
-          border: 0;
-          border-radius: 4px;
-          margin-bottom: 1px;
-          transition: all 250ms ease-in-out;
-          &:hover {
-            background-color: #ffffff;
-            box-shadow: 0px 0px 14px 0.3px #0e81ce96;
+          label {
+            font-size: 20px;
+            font-weight: bold;
           }
 
+          input {
+            margin-top: -5px;
+            min-width: 18em;
+            height: 37px;
+            padding: 0px 10px;
+            font-size: 16px;
+            font-family: "Open Sans", sans-serif;
+            background-color: #f3f3f3;
+            border: 0;
+            border-radius: 40px;
+            margin-bottom: 1px;
+            transition: all 250ms ease-in-out;
+            &:hover {
+              background-color: #ffffff;
+              box-shadow: 0px 0px 14px 0.3px #ffffff96;
+            }
+
+            &:focus {
+              outline: none;
+              box-shadow: 0px 0px 12px 0.8px #000000b2;
+            }
+          }
+        }
+
+        .btn {
+          font-size: 21px;
+          padding: 5px 20px;
+          border: 0;
+          background-color: #368ec9;
+          color: #fff;
+          border-radius: 20px;
+          transition: all 250ms ease-in-out;
+          cursor: pointer;
+          &:hover {
+            background-color: #1e73ac;
+          }
           &:focus {
             outline: none;
-            box-shadow: 0px 0px 12px 0.8px #3474dbb2;
           }
         }
       }

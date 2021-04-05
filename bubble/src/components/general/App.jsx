@@ -11,6 +11,8 @@ import Login from './Login';
 import PrivateRoute from './PrivateRoute';
 import Dashboard from './Dashboard';
 
+import Landing from './Landing';
+
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import {
@@ -52,7 +54,7 @@ class App extends Component {
                             <Route path="/register" component={Register}/>
                             <Route path="/login" component={Login}/>
                             <PrivateRoute path="/dashboard" component={Dashboard}/>
-                            <Route path="/" component={Login}/> { /* Landing Page */}
+                            <Route path="/" component={Register}/> { /* Landing Page */}
                         </Switch>
                 </Router>
             </Provider>
