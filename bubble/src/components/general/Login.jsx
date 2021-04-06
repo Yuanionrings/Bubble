@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { loginUser } from '../../actions/userAuthActions';
 import { connect } from 'react-redux';
+import clearAuthErrors from '../../util/clearAuthErrors'
+
 import "./StyleSheet.css";
 class Login extends Component {
 
@@ -13,6 +15,7 @@ class Login extends Component {
     }
 
     componentDidMount() {
+        this.props.clearAuthErrors();
         if (this.props.auth.isAuthenticated) {
             console.log("You are already logged in! Congrats!")
             this.props.history.push('/dashboard');
@@ -92,6 +95,6 @@ const mapStateToProps = storeState => ({
     errors: storeState.errors
 }); // implied return because obj wrapped in parenthesis
 
-const mapDispatchToProps = { loginUser }; // Calling props.loginUser(userData) will now call our function inside userAuthActions
+const mapDispatchToProps = { loginUser, clearAuthErrors }; 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

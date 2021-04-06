@@ -1,4 +1,4 @@
-import { GET_ERRORS } from '../actions/types';
+import { SET_AUTH_ERRORS } from '../actions/types';
 
 // In index.js this reducer is combined with the other(s). This one specifically is used
 // for the 'errors' property of the store's state
@@ -8,7 +8,7 @@ const initialState = {};
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_ERRORS:
+    case SET_AUTH_ERRORS:
       return action.payload;
     default:
       return state;

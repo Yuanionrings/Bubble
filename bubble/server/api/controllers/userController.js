@@ -36,7 +36,7 @@ exp.register = function (req, res) {
 
 exp.sign_in = function (req, res) {
     let { username, password } = req.body;
-    User.findOne({
+    User.findOne({ 
         identifier: username
     }, function (err, user) {
         if (err) // Error from MongoDB
@@ -48,6 +48,7 @@ exp.sign_in = function (req, res) {
 
         let plainObj = user.toJSON();
         delete plainObj.identifier, plainObj.date;
+        
         jwt.sign(plainObj,
             secretKey,
             { expiresIn: 3600 }, // 1 hour

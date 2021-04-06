@@ -27,7 +27,6 @@ html, body, nav, ul {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .form-container h3 {

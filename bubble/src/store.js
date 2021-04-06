@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 
 import { combineReducers } from 'redux';
 import authReducer from './reducers/authReducer';
-import errorReducer from './reducers/errorReducer';
+import errorReducer from './reducers/authErrorReducer';
 
 const initialState = {};
 const middleware = [thunk];

@@ -2,7 +2,7 @@ import axios from 'axios';
 import setAuthToken from '../util/setAuthToken';
 import jwt_decode from 'jwt-decode';
 
-import { GET_ERRORS, SET_CURRENT_USER } from './types';
+import { SET_AUTH_ERRORS , SET_CURRENT_USER } from './types';
 
 /**
  * Register User then Redirect to Login or Send Errors to Component
@@ -19,7 +19,7 @@ export const registerUser = (userData, history) => (dispatch) => {
     })
     .catch(err => {
         dispatch({
-            type: GET_ERRORS,
+            type: SET_AUTH_ERRORS,
             payload: err.response.data
         })
     })
@@ -46,7 +46,7 @@ export const loginUser = (userData, history) => (dispatch) => {
     .catch(err => {
         console.log(`Client received an error at userAuthActions:loginUser`, err.response);
         dispatch({
-            type: GET_ERRORS,
+            type: SET_AUTH_ERRORS,
             payload: err.response.data
         })
     })

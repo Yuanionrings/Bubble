@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css"
 import { connect } from 'react-redux';
+import clearAuthErrors from '../../util/clearAuthErrors'
 
 import { Link, withRouter } from 'react-router-dom';
 
@@ -20,6 +21,7 @@ class Register extends Component {
     }
 
     componentDidMount() {
+        this.props.clearAuthErrors();
         if (this.props.auth.isAuthenticated) {
             this.props.history.push('/dashboard'); 
         }
@@ -118,6 +120,6 @@ const mapStateToProps = state => ({
     errors: state.errors
 }); // implied return because obj wrapped in parenthesis
 
-const mapDispatchToProps = { registerUser }; // Calling props.loginUser(userData) will now call our function inside userAuthActions
+const mapDispatchToProps = { registerUser, clearAuthErrors }; // Calling props.loginUser(userData) will now call our function inside userAuthActions
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Register));

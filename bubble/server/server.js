@@ -32,12 +32,9 @@ app.use(cors())
 // NEW NEW (GARN)
 
 // Bodyparser middleware for routes to accept JSON
-app.use(
-  bodyParser.urlencoded({
-      extended: false
-  })
-);
-app.use(bodyParser.json());
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: false}))
 app.use(cors());
 
 User = require('./api/models/UserSchema'),
