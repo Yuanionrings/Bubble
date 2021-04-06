@@ -11,6 +11,8 @@ import Login from './Login';
 import PrivateRoute from './PrivateRoute';
 import Dashboard from './Dashboard';
 
+import Landing from './Landing';
+
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import {

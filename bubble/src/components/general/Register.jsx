@@ -9,6 +9,8 @@ import { registerUser } from '../../actions/userAuthActions';
 
 import loginImg from "../../resources/soap.png";
 
+import "./style.scss";
+
 class Register extends Component {
     constructor() {
         super()
@@ -23,10 +25,10 @@ class Register extends Component {
     componentDidMount() {
         this.props.clearAuthErrors();
         if (this.props.auth.isAuthenticated) {
-            this.props.history.push('/dashboard'); 
+            this.props.history.push('/login');
         }
     }
-
+    
     componentDidUpdate(prevProps) {
         console.log(this.props.errors)
         if (prevProps.errors !== this.props.errors) {
@@ -63,51 +65,71 @@ class Register extends Component {
     render() {
         let { fullName, username, email, password } = this.state;
         let { errors } = this.props;
-        return (
-            <div>
-                <div className='full-screen-container'>
-                    <div className='form-container'>
-                        <h3>Welcome</h3>
-                        <form onSubmit={this.onSubmit}>
-                            <div className='input-group'>
-                                <input type='text'
-                                    placeholder='Full Name'
+        return(
+            <div className="base-container">
+
+                <div className="container">
+
+                    <div className="header">Register</div>
+
+                    <div className='content'>
+                        <div className="image">
+                            <img src={loginImg} />
+                        </div>
+
+                        <div className='form'>
+                            <form onSubmit={this.onSubmit}>
+                                <div className="form-group">
+                                    <label htmlFor="full name">Display Name:</label>
+                                    <input type = 'text'
+                                    placeholder='Name'
                                     id='fullName'
                                     onChange={this.onChange}
                                     value={fullName}
-                                    className='text-input' />
-                                <div className='err-tooltip'>{errors.fullName}</div>
-                            </div>
-                            <div className='input-group'>
-                                <input type='text'
+                                    //className='form-control form-group'
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="username">Username:</label>
+                                    <input type = 'text'
                                     placeholder='Username'
                                     id='username'
                                     onChange={this.onChange}
                                     value={username}
                                     error={errors}
-                                    className='text-input' />
-                                <div className='err-tooltip'>{errors.username}</div>
-                            </div>
-                            <div className='input-group'>
-                                <input type='text'
+                                    //className='form-control form-group'
+                                    />
+                                    <span className='red-text'>
+                                        {errors.username}
+                                    </span>
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="email">Email:</label>
+                                    <input type = 'text'
                                     placeholder='Email'
                                     id='email'
                                     onChange={this.onChange}
                                     value={email}
-                                    className='text-input' />
-                                <div className='err-tooltip'>{errors.email}</div>
-                            </div>
-                            <div className='input-group'>
-                                <input type='password'
+                                    //className='form-control form-group'
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="password">Password:</label>
+                                    <input type = 'password'
                                     placeholder='Password'
                                     id='password'
                                     onChange={this.onChange}
                                     value={password}
-                                    className='text-input' />
-                                <div className='err-tooltip'>{errors.password}</div>
-                            </div>
-                            <input type='submit' className='btn btn-red' value='Register' />
-                        </form>
+                                    //className='form-control form-group'
+                                    />
+                                </div>
+
+                                <input type='submit' className='btn' value='Register'/>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
