@@ -126,7 +126,7 @@ class Register extends Component {
                                 <input type='submit' className='btn' value='Register'/>
 
                                 <div className='text-center'>
-                                    Already have an account?
+                                    Already have an account? 
                                     <Link className='redirect' to='/login'>
                                         Login here
                                     </Link>

@@ -7,7 +7,6 @@ import { loginUser } from '../../actions/userAuthActions';
 
 import loginImg from "../../resources/soap.png";
 
-//import "./StyleSheet.css";
 import "./style.scss";
 
 class Login extends Component {
