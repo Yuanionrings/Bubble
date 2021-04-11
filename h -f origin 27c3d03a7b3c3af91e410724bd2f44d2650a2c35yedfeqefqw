@@ -1,0 +1,114 @@
+[33mcommit b0a88fa5a777569636be4d9f46ad2dbf3cae8570[m[33m ([m[1;36mHEAD -> [m[1;32myeates[m[33m, [m[1;31morigin/yeates[m[33m)[m
+Author: Garnet Yeates <yeatesg@wit.edu>
+Date:   Sun Apr 11 01:29:48 2021 -0400
+
+    Forgot to stage some files from last commit, refer to last commit for details
+
+[33mcommit 27c3d03a7b3c3af91e410724bd2f44d2650a2c35[m
+Author: Garnet Yeates <yeatesg@wit.edu>
+Date:   Sat Apr 10 23:25:34 2021 -0400
+
+    Added Dashboard Functionality, created skeleton code for pages
+    
+    + Added left side navigation bar to the Dashboard page which can be pulled in and out with the top button to show just the icons, or the icons as well as short descriptions such as where the icon leads you to
+    + Added Sidebar and SidebarEntry component to easily add tabs with a description as well as an icon to the navigation bar. The icons can be clicked to do many things such as log out the user, open/close the nav bar, or even set the dashboard pages content (the right side) to another page (such as Events, Profile, and Create Event pages)
+    + The SidebarEntry component is easily reusable to link several different pages of content to the dashboard page
+    + Using the SidebarEntry component as well as skeleton code provided in /dashboard/pages, we can easily create pages for our functions such as view profile, create event, etc
+    + Added css/styling for the nav bar components and hover/click effects on the icons/descriptions
+    + Created skeleton code classes for different pages on the dashboard in /dashboard/pages
+    + Modified registration page css to remove the text cursor and user-select abilities. Also smoothed it out and messaed with padding/margin. Added min-size so that the registration component cant get smaller than the text inside of it.
+
+[33mcommit f8f775280702881c70d2af7cbe4bdece09cd025f[m
+Merge: c22160a 71aa082
+Author: Garnet Yeates <yeatesg@wit.edu>
+Date:   Tue Apr 6 18:23:32 2021 -0400
+
+    Merge branch 'yeates' of https://github.com/Yuanionrings/Bubble into yeates
+
+[33mcommit c22160aa2895013150f81e70ae7123d758b350c7[m
+Author: Garnet Yeates <yeatesg@wit.edu>
+Date:   Tue Apr 6 18:21:37 2021 -0400
+
+    Refactoring, fixed small bug with error messages
+    
+    - Refactored some reducer/action names to be more appropriate to what the actions actually do. GET_ERRORS action is now called SET_ERRORS because in the action you are setting the error object to a new one, not retrieving it. Also renamed errorReducer to authErrorReducer to denote the fact that it only has to do with authentication (registration/login) errors. In the future we will probably have more error reducers for different types of errors
+    - Added utility function 'clearAuthErrors' to fix a bug where the errors carry over from the registration page to the login page. For example if the user entered a username that already exists in the registration page then fixes their error and presses register, the login page will still display 'Account name already exists' when they first get to the page. To fix this, the utility function is called upon mounting of the registration and login components
+    - Code cleanup
+
+[33mcommit 71aa0820a88d8cc2819513069c0a9d04211ad4ff[m
+Author: Yuan <yuanionrings@gmail.com>
+Date:   Mon Apr 5 17:03:43 2021 -0400
+
+    graphic changes to register page
+
+[33mcommit a40a101b998cdfa5d70ed87a5a8f61110f3f7cc8[m
+Author: Yuan <yuanionrings@gmail.com>
+Date:   Mon Apr 5 15:52:56 2021 -0400
+
+    commented out some lines
+
+[33mcommit 1f7d24066478d07b89874c27e63ddf566a70a12d[m
+Author: Yuan <yuanionrings@gmail.com>
+Date:   Mon Apr 5 15:50:58 2021 -0400
+
+    made copy of register page
+
+[33mcommit 3fa280fd63a1924d80cfeb9d947ced3fcc6a0324[m
+Author: Garnet Yeates <yeatesg@wit.edu>
+Date:   Sun Apr 4 23:57:05 2021 -0400
+
+    Multiple commits in one because I keep deleting my commits
+    
+    Added logout functionality, styled login page, styled registration page, added logout button to dashboard page
+    
+    Earlier commits:
+    
+    added JWT authorization upon logging in
+    JWT token is stored in local storage for now
+    login function now works fully from front end to back end with token authorization
+    
+    Even earlier:
+    
+    Added routes so different pages can be viewed depending on the URL
+    Split components/pages into separate files
+    started working on JWT authorization for login
+    finished registration function
+
+[33mcommit bb361bddcafe81bc27cf898faaf7a274adc253fb[m
+Merge: 0e3d93d a3260d2
+Author: Yuan Gao <43865485+Yuanionrings@users.noreply.github.com>
+Date:   Thu Mar 11 15:24:11 2021 -0500
+
+    Merge pull request #1 from Yuanionrings/yuan
+    
+    Modified backend and frontend
+
+[33mcommit a3260d21d6dcd0f3f1eb52ee6eae5358aa98ce89[m
+Author: Yuan <yuanionrings@gmail.com>
+Date:   Thu Mar 11 15:10:43 2021 -0500
+
+    created registration page and connected front end to backend
+
+[33mcommit 84e69feb8001c22d9c24918f5f433155c0cf6ff6[m
+Author: Yuan <yuanionrings@gmail.com>
+Date:   Thu Mar 11 13:41:00 2021 -0500
+
+    backend up and running with mongodb
+
+[33mcommit cc7386a4c41c9aa8c2169501f23e47c54f279f8f[m
+Author: Yuan <yuanionrings@gmail.com>
+Date:   Sat Feb 20 23:51:10 2021 -0500
+
+    added express and mongodb
+
+[33mcommit 0e3d93d91848714ae630cdfb2856b66b578ed7aa[m
+Author: Yuan <yuanionrings@gmail.com>
+Date:   Sat Feb 6 19:38:16 2021 -0500
+
+    created first react build setup
+
+[33mcommit f3327c5f32b6566c3b4482a03ac44d7291a27cec[m
+Author: Yuan Gao <43865485+Yuanionrings@users.noreply.github.com>
+Date:   Wed Jan 27 14:33:32 2021 -0500
+
+    Initial commit
