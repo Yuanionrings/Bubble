@@ -120,4 +120,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = { registerUser }; // Calling props.loginUser(userData) will now call our function inside userAuthActions
 
-//export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Register));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Register));

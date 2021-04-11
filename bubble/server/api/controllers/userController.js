@@ -51,7 +51,7 @@ exp.sign_in = function (req, res) {
         
         jwt.sign(plainObj,
             secretKey,
-            { expiresIn: 3600 }, // 1 hour
+            { expiresIn: "360000s" }, // 100 hour
             (err, token) => {
                 if (err) {
                     console.log(err);

@@ -13,7 +13,6 @@ const port = process.env.PORT || 4000;
 // Configuring dotenv
 dotenv.config()
 
-
 const option = { // Something for later maybe???? can be used in mongoose.connect as a parameter
     socketTimeoutMS: 30000,
     keepAlive: true,

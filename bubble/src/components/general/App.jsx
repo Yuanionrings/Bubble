@@ -6,12 +6,11 @@ import setAuthToken from '../../util/setAuthToken'
 
 import store from '../../store';
 import Register from './Register';
+import Registrar from './Register_yeates_version';
 import Login from './Login';
 
 import PrivateRoute from './PrivateRoute';
-import Dashboard from './Dashboard';
-
-import Landing from './Landing';
+import Dashboard from '../dashboard/Dashboard';
 
 import "bootstrap/dist/css/bootstrap.min.css"
 
@@ -52,6 +51,7 @@ class App extends Component {
                         renders the first one that matches the current URL. */}
                         <Switch>
                             <Route path="/register" component={Register}/>
+                            <Route path="/register2" component={Registrar}/>
                             <Route path="/login" component={Login}/>
                             <PrivateRoute path="/dashboard" component={Dashboard}/>
                             <Route path="/" component={Register}/> { /* Landing Page */}

@@ -5,7 +5,6 @@ import clearAuthErrors from '../../util/clearAuthErrors'
 
 import "./StyleSheet.css";
 class Login extends Component {
-
     constructor() {
         super()
         this.state = {

@@ -1,8 +1,8 @@
 :root {
     --black: #000000;
     --white: #FFFFFF;
-    --red: #eb144a;
-    --dark-red: #b10b35;
+    --red: #c7274f;
+    --dark-red: #8a0c2b;
     --light-red: #f7a0b5;
     font-family: Verdana, Arial, sans-serif;
 }
@@ -30,6 +30,7 @@ html, body, nav, ul {
 }
 
 .form-container h3 {
+    overflow: hidden;
     text-align: center;
     margin: 0;
     margin-bottom: 30px;
@@ -40,9 +41,9 @@ html, body, nav, ul {
 .form-container {
     background-color: white;
     border-radius: 8px;
-    max-width: 400px;
-    min-width: 300px;
-    width: 50%;
+    max-width: 425px;
+    min-width: 325px;
+    width: 40%;
     padding: 40px 20px;
 }
 
@@ -58,12 +59,13 @@ html, body, nav, ul {
 }
 
 .input-group input {
+    user-select: none;
     box-sizing: border-box;
     outline: none;
     font-size: 1rem;
     margin-bottom: 0.1rem;
     width: 100%;
-    min-width: 0;
+    min-width: 0px;
     height: calc(1.5em + .75rem + 2px);
     padding: .375rem .75rem;
     line-height: 1.5;
@@ -86,7 +88,6 @@ html, body, nav, ul {
     border-radius: .25rem;
     position: relative;
 }  
-
 
 .btn.btn-red {
     outline: none;
