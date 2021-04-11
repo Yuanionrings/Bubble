@@ -1,0 +1,145 @@
+label, div, .no-select {
+  user-select: none;
+}
+
+.base-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: top;
+  background-size: cover;
+  background-position: center;
+  background-color: #B7DEFC;
+  padding: 6em 1em;
+  justify-content: center;
+  font-family: "Open Sans", sans-serif;
+
+  .container {
+    min-width: 342px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #49b1f7;
+    box-shadow: 10px 10px 12px 5px rgba(15, 15, 15, 0.2);
+    border-radius: 60px;
+    position: relative;
+    z-index: 99;
+    width: 30%;
+    //height: 100%;
+    //padding: 0px 0px;
+    //z-index: 99;
+
+    .header {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      margin-top: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+
+      .image {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        width: 10em;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+      }
+
+      .form {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .form-group {
+          flex-shrink: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+
+          label {
+            font-size: 15px;
+            padding-left: 5px;
+            font-weight: 700;
+          }
+
+          input {
+            margin-top: -5px;
+            margin-bottom: 1px;
+            height: 37px;
+            padding: 0px 10px;
+            font-size: 16px;
+            background-color: #f3f3f3;
+            border: 0;
+            border-radius: 15px;
+            transition: all 250ms ease-in-out;
+            width: 20em;
+            &:hover {
+              background-color: #ffffff;
+              box-shadow: 0px 0px 14px 0.3px #ffffff96;
+            }
+
+            &:focus {
+              outline: none;
+              box-shadow: 0px 0px 12px 0.8px #000000b2;
+            }
+          }
+
+          .err-tooltip{
+            padding: 0px 10px;
+            color:#FF4D51;
+            font-size: 14px;
+            font-weight: 550;
+          }
+        }
+
+        .btn {
+          position: relative;
+          left: 105px;
+          flex-shrink: 1;
+          margin-bottom: 0.5rem;
+          font-size: 21px;
+          font-weight: 500;
+          padding: 5px 20px;
+          border: 0;
+          background-color: #368ec9;
+          color: #fff;
+          border-radius: 20px;
+          transition: all 250ms ease-in-out;
+          cursor: pointer;
+          &:hover {
+            background-color: #1e73ac;
+          }
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .text-center {
+          font-size: 18px;
+          font-weight: 500;
+          margin-top: 0.75rem;
+          margin-bottom: 1rem;
+
+          .redirect{
+            color: #085ec0;
+            font-size: 18px;
+            margin-left: 0.25rem;
+          }
+        }
+      }
+    }
+  }
+}
