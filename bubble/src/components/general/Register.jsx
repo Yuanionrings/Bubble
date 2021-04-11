@@ -9,8 +9,6 @@ import { registerUser } from '../../actions/userAuthActions';
 
 import loginImg from "../../resources/soap.png";
 
-import "./style.scss";
-
 class Register extends Component {
     constructor() {
         super()

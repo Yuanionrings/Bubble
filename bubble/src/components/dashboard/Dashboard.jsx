@@ -5,9 +5,11 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/userAuthActions';
 import ProfilePage from './pages/ProfilePage';
 import Sidebar from './Sidebar';
+import Homebar from './Homebar';
 
 import "./DashboardStyle.scss"
-class Garnboard extends Component {
+
+class Dashboard extends Component {
     constructor() {
         super()
         this.state = {
@@ -33,12 +35,14 @@ class Garnboard extends Component {
         let { pageContent: PageContent } = this.state;
         return (
             <div className="main-container">
-                    <Sidebar logoutUser={logoutUser}setDashboardContent={this.setDashboardContent}/>
-                    <div className="content-container">
-                        <div className="content">
-                            <PageContent/>
-                        </div>
+                <Homebar/>
+                <Sidebar logoutUser={logoutUser}setDashboardContent={this.setDashboardContent}/>
+                
+                <div className="content-container">
+                    <div className="content">
+                        <PageContent/>
                     </div>
+                </div>
             </div>
         )
 
@@ -51,4 +55,4 @@ const mapStateToProps = state => ({
     errors: state.errors
 }); 
 
-export default connect(mapStateToProps, { logoutUser })(Garnboard);
+export default connect(mapStateToProps, { logoutUser })(Dashboard);

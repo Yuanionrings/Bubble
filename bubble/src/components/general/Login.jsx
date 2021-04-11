@@ -7,8 +7,6 @@ import { loginUser } from '../../actions/userAuthActions';
 
 import loginImg from "../../resources/soap.png";
 
-import "./style.scss";
-
 class Login extends Component {
     constructor() {
         super()
