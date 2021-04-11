@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { loginUser } from '../../actions/userAuthActions';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import clearAuthErrors from '../../util/clearAuthErrors'
 
-import "./StyleSheet.css";
+import { loginUser } from '../../actions/userAuthActions';
+
+import loginImg from "../../resources/soap.png";
+
+//import "./StyleSheet.css";
+import "./style.scss";
+
 class Login extends Component {
     constructor() {
         super()
@@ -53,35 +59,54 @@ class Login extends Component {
         let { username, password } = this.state;
         let { errors } = this.props;
         return (
-            <div>
-                <div className='full-screen-container'>
-                    <div className='form-container'>
-                        <h3>Welcome</h3>
-                        <form onSubmit={this.onSubmit}>
-                            <div className='input-group'>
-                                <input type='text'
-                                    placeholder='Username'
-                                    id='username'
-                                    className='text-input'
-                                    onChange={this.onChange}
-                                    value={username}
-                                    error={errors}
-                                />
-                                <div className='err-tooltip'>{errors.username}</div>
-                            </div>
-                            <div className='input-group'>
-                                <input type='password'
-                                    placeholder='Password'
-                                    id='password'
-                                    className='text-input'
-                                    onChange={this.onChange}
-                                    value={password}
-                                    error={errors}
-                                />
-                                <div className='err-tooltip'>{errors.password}</div>
-                            </div>
-                            <input type="submit" className='btn btn-red' value='Log In' />
-                        </form>
+            <div className='base-container'>
+                <div className='container'>
+
+                    <div className="header">Login</div>
+
+                    <div className='content'>
+                        <div className="image">
+                            <img src={loginImg} />
+                        </div>
+
+                        <div className='form'>
+                            <form onSubmit={this.onSubmit}>
+                                <div className='form-group'>
+                                    <label htmlFor="username">Username:</label>
+                                    <input type='text'
+                                        placeholder='Username'
+                                        id='username'
+                                        className='text-input'
+                                        onChange={this.onChange}
+                                        value={username}
+                                        error={errors}
+                                    />
+                                    <div className='err-tooltip'>{errors.username}</div>
+                                </div>
+
+                                <div className='form-group'>
+                                    <label htmlFor="password">Password:</label>
+                                    <input type='password'
+                                        placeholder='Password'
+                                        id='password'
+                                        className='text-input'
+                                        onChange={this.onChange}
+                                        value={password}
+                                        error={errors}
+                                    />
+                                    <div className='err-tooltip'>{errors.password}</div>
+                                </div>
+
+                                <input type="submit" className='btn' value='Log In' />
+
+                                <div className='text-center'>
+                                    Don't have an account yet? 
+                                    <Link className='redirect' to='/register'>
+                                        Register here
+                                    </Link>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
