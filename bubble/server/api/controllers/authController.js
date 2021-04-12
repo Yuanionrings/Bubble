@@ -6,16 +6,15 @@ var mongoose = require('mongoose'),
     bcrypt = require('bcrypt'),
     User = mongoose.model('User');
 
-const exp = {};
 
-exp.register = function (req, res) {
+exports.register = function (req, res) {
     let { username, password } = req.body;
     User.findOne({
         identifier: username 
     }, (err, user) => {
         if (err) // Error from MongoDB
             return res.status(500).json({ generalError: "Internal error querying MongoDB database" })
-        if (user) // User not found
+        if (user) // User exists already
             return res.status(409).json({ resetField: false, username: "A user already exists with this username"})
         
         // If we get here we are all good to save our user
@@ -34,7 +33,7 @@ exp.register = function (req, res) {
     }) 
 };
 
-exp.sign_in = function (req, res) {
+exports.sign_in = function (req, res) {
     let { username, password } = req.body;
     User.findOne({ 
         identifier: username
@@ -66,6 +65,3 @@ exp.sign_in = function (req, res) {
         return;
     });
 };
-
-
-module.exports = exp;

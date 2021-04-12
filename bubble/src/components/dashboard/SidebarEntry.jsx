@@ -21,7 +21,7 @@ export function SidebarEntry(props) {
 function EntryDescription(props) {
 
     const sidebarStyle = {
-        transition: `padding 150ms, width 200ms, background-color 250ms linear, border 50ms linear`
+        transition: `padding 150ms, width 150ms, background-color 250ms linear, border 50ms linear`
     }
 
     const sidebarTransitionStyles = {
@@ -34,7 +34,7 @@ function EntryDescription(props) {
     let { text, isOpen, onClick } = props
 
     return (
-        <Transition in={isOpen} timeout="200ms">
+        <Transition in={isOpen} timeout={100}>
             {(state) => (
                 <div className="description" onClick={onClick} style={{
                     ...sidebarStyle,

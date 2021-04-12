@@ -28,7 +28,6 @@ class Register extends Component {
     }
     
     componentDidUpdate(prevProps) {
-        console.log(this.props.errors)
         if (prevProps.errors !== this.props.errors) {
             let errors = this.props.errors;
             console.log('updating this component bc props errors changed')

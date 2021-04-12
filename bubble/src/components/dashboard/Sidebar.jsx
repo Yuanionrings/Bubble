@@ -66,6 +66,8 @@ function Sidebar(props) {
             >
             </SidebarEntry>
         </div>)
+
+
 }
 
 export default Sidebar;

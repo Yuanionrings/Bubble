@@ -8,6 +8,7 @@ import Sidebar from './Sidebar';
 import Homebar from './Homebar';
 
 import "./DashboardStyle.scss"
+import { Home } from '@material-ui/icons';
 
 class Dashboard extends Component {
     constructor() {
@@ -30,29 +31,27 @@ class Dashboard extends Component {
         })
     }
 
-    render(){
+    render() {
         let { logoutUser } = this.props;
         let { pageContent: PageContent } = this.state;
         return (
-            <div className="main-container">
-                {/* <Homebar/> */}
-                <Sidebar logoutUser={logoutUser}setDashboardContent={this.setDashboardContent}/>
-                
-                <div className="content-container">
-                    <div className="content">
-                        <PageContent/>
-                    </div>
+            <div className="fullscreen-container">
+                <Homebar />
+                <div className="main-container">
+                    <Sidebar logoutUser={logoutUser} setDashboardContent={this.setDashboardContent} />
+                    <PageContent />
                 </div>
             </div>
+
         )
 
-      //  <button onClick={this.props.logoutUser}>Log Out</button>
+        //  <button onClick={this.props.logoutUser}>Log Out</button>
     }
 }
 
-const mapStateToProps = state => ({ 
+const mapStateToProps = state => ({
     auth: state.auth,
     errors: state.errors
-}); 
+});
 
 export default connect(mapStateToProps, { logoutUser })(Dashboard);

@@ -11,7 +11,6 @@ var mm =  String(today.getMonth() + 1).padStart(2, '0');
 var yyyy = today.getFullYear();
 var today = yyyy + '-' + mm + '-' + dd;
 
-
 var currentDate = today;
 var schedulerData = [
     { startDate: today + 'T10:00', endDate: today + 'T10:30', title: 'Yoink'},
