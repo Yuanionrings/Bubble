@@ -35,7 +35,7 @@ class Dashboard extends Component {
         let { pageContent: PageContent } = this.state;
         return (
             <div className="main-container">
-                <Homebar/>
+                {/* <Homebar/> */}
                 <Sidebar logoutUser={logoutUser}setDashboardContent={this.setDashboardContent}/>
                 
                 <div className="content-container">
