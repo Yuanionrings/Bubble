@@ -16,7 +16,7 @@ import EventsPage from './pages/EventsPage';
 
 function Sidebar(props) {
 
-    const { setDashboardContent, logoutUser } = props
+    const { setDashboardContent, currDashboardContent, logoutUser } = props
 
     let [isOpen, setIsOpen] = React.useState(false);
 
@@ -42,6 +42,8 @@ function Sidebar(props) {
                     icon={<AccountCircleOutlinedIcon />}
                     text="Profile"
                     isOpen={isOpen}
+                    currDashboardContent={currDashboardContent}
+                    dashboardContent={ProfilePage}
                     onClick={() => setDashboardContent(ProfilePage)}
                 >
                 </SidebarEntry>
@@ -49,6 +51,8 @@ function Sidebar(props) {
                     icon={<EventNoteOutlinedIcon />}
                     text="Events"
                     isOpen={isOpen}
+                    currDashboardContent={currDashboardContent}
+                    dashboardContent={EventsPage}
                     onClick={() => setDashboardContent(EventsPage)}
                 >
                 </SidebarEntry>
@@ -56,6 +60,8 @@ function Sidebar(props) {
                     icon={<EventAvailableOutlinedIcon />}
                     text="Add Event"
                     isOpen={isOpen}
+                    currDashboardContent={currDashboardContent}
+                    dashboardContent={CreateEventPage}
                     onClick={() => setDashboardContent(CreateEventPage)}
                 >
                 </SidebarEntry>

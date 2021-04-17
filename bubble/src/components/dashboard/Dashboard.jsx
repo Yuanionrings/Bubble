@@ -38,7 +38,10 @@ class Dashboard extends Component {
             <div className="fullscreen-container">
                 <Homebar />
                 <div className="main-container">
-                    <Sidebar logoutUser={logoutUser} setDashboardContent={this.setDashboardContent} />
+                    <Sidebar
+                        logoutUser={logoutUser}
+                        currDashboardContent={this.state.pageContent}
+                        setDashboardContent={this.setDashboardContent} />
                     <PageContent />
                 </div>
             </div>
