@@ -43,8 +43,12 @@ function Example() {
 
     const receiveProfileData = ({fullName, username, email, password}) => {
         setFullname(fullName);
+        setNewFullName(fullName)
         setUsername(username);
+        setNewUsername(username);
         setEmail(email);
+        setNewEmail(email);
+
     }
 
     const stopEditingAll = () => {

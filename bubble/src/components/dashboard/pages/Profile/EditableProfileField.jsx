@@ -27,7 +27,7 @@ function EditableProfileField(props) {
 
     function cancelEditing() {
         setBeingEdited(false);
-        onChange("");
+        onChange(realValue);
     }
 
     return (
