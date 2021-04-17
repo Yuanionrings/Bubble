@@ -1,11 +1,12 @@
 'use strict';
 const { secretKey } = require('../../../config/keys')
 
-var mongoose = require('mongoose'),
+require('../models/UserSchema'); // Call require so the module loads and calls mongoose.model(..) to set up the schema
+
+const mongoose = require('mongoose'),
     jwt = require('jsonwebtoken'),
     bcrypt = require('bcrypt'),
     User = mongoose.model('User');
-
 
 exports.register = function (req, res) {
     let { username, password } = req.body;
@@ -45,9 +46,8 @@ exports.sign_in = function (req, res) {
         if (!user.comparePassword(password)) // Invalid credentials
             return res.status(401).json({ resetField: true, password: 'Authentication failed' });
 
-        let plainObj = user.toJSON();
-        delete plainObj.identifier, plainObj.date;
-        
+        let plainObj = { _id: user.toJSON()._id }
+
         jwt.sign(plainObj,
             secretKey,
             { expiresIn: "360000s" }, // 100 hour

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { logoutUser } from '../../actions/userAuthActions';
-import ProfilePage from './pages/ProfilePage';
+import ProfilePage from './pages/Profile/ProfilePage';
 import Sidebar from './Sidebar';
 import Homebar from './Homebar';
 

@@ -7,7 +7,7 @@ export function SidebarEntry(props) {
     let { icon: Icon, onClick } = props;
     let IconComponent = Icon.type;
     return (
-        <div className="sidebar-tab">
+        <div className={"sidebar-tab"} >
             <EntryDescription {...props} />
             <div className="link">
                 <IconButton onClick={onClick} className="icon-button">
@@ -36,7 +36,7 @@ function EntryDescription(props) {
     return (
         <Transition in={isOpen} timeout={100}>
             {(state) => (
-                <div className="description" onClick={onClick} style={{
+                <div className={"description" + (props.borderTop ? " top-border" : "")} onClick={onClick} style={{
                     ...sidebarStyle,
                     ...sidebarTransitionStyles[state]
                 }}>

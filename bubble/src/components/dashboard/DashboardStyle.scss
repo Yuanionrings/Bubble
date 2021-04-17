@@ -39,10 +39,19 @@ html, body, nav, ul {
                 width: 70%;
             }
 
+            h2 {
+                margin-bottom: 1rem;
+            }
+
             .button {
-                font-size: 1.2rem;
+                font-size: 1.5rem;
+                outline: none;
+                border: none;
+                border-radius: 0.3rem;
+                
                 background-color: rgb(48, 216, 238);
-                transition: background-color 200ms ease-in-out box-shadow 100ms linear;
+                transition: background-color 200ms ease-in-out, box-shadow 100ms linear;
+                padding: 0.8rem 0.5rem;
 
                 &:hover {
                     background-color: rgb(49, 175, 192);
@@ -74,22 +83,40 @@ html, body, nav, ul {
     margin-left: 0px;
 }
 
+// Modify z-index of calendar container so it doesn't mess with sidebar shadow
+.event-base-container {
+    z-index: 1;
+}
+
 .sidebar-container {
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
+    border-radius: 0.5rem;
     min-height: 92vh;
-    font-size: 20px;
+    display: flex;
+    z-index: 2;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: rgb(255, 255, 255);
-    border-right: 2px solid rgb(211, 211, 211);
+    border-right: 0px solid rgb(211, 211, 211);
+    box-shadow: 0.0625rem 0rem 0.8rem rgba(32, 32, 36, 0.2);
+
+
+    .sidebar-group {
+        display: flex;
+        flex-direction: column;
+        font-size: 20px;
+    }
+
 }
 
 .sidebar-icon, .sidebar-icon span {
     z-index: 3;
 }
 
+.description.top-border {
+    border-top: 0.1rem solid rgb(194, 194, 194);
+}
+
 .sidebar-tab {
-    width: auto;
     max-width: 13rem;
     max-height: 4rem;
     min-height: 4rem;
@@ -132,7 +159,7 @@ html, body, nav, ul {
         color: #1b1b1b;
         font-size: 3rem !important;
         &:hover {
-            font-size: 3.2rem !important;
+            font-size: 3.5rem !important;
             color: #535353;
             transition: color 100ms linear, font-size 100ms ease-in-out;
         }
@@ -173,7 +200,7 @@ html, body, nav, ul {
     max-height: 8vh;
     height: 8vh;
     min-height: 8vh;
-    box-shadow: 0px 1px 10px #9c9c9ca4;
+    box-shadow: 0 0.0625rem 0.8rem rgba(32, 32, 36, 0.2);
     background-color: #ffffff;
 
     .homebar-image{
@@ -182,5 +209,40 @@ html, body, nav, ul {
                 width: 100%;
                 height: 100%;
             }
+    }
+}
+
+
+.editable-profile-field {
+    box-sizing: border-box;
+
+    min-width: 20rem;
+    max-width: 20rem;
+    margin-bottom: 0.5rem;
+    min-height: 45px;
+
+    .editable-text-field {
+        margin-bottom: 0;
+        width: 100%;
+        min-height: 45px;
+    }
+
+    .MuiInputBase-root {
+        min-height: 45px;
+    }
+
+    label {
+        height: 45px;
+        box-sizing: border-box;
+        transition: border 100ms ease-in-out;
+        border-radius: 0.25rem;
+        &:hover {
+            border: 2px solid black;
+        }
+        cursor: grab;
+        padding: 10.5px 0px 10.5px 14px;
+        min-width: 100%;
+        width: 100%;
+        margin-bottom: 0;
     }
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import '../DashboardStyle.scss'
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import axios from 'axios';
 import DateFnsUtils from '@date-io/date-fns';
 import {
     MuiPickersUtilsProvider,
@@ -45,6 +44,7 @@ function CreateEventPage({ }) {
                         <div className="create-event-form-container">
                             <h2>Create Event</h2>
                             <TextField
+                                variant="outlined"
                                 error={errors.eventName && true}
                                 helperText={errors.eventName}
                                 onChange={(event) => setEventName(event.target.value)}
@@ -54,6 +54,7 @@ function CreateEventPage({ }) {
                             >
                             </TextField>
                             <KeyboardDatePicker
+                                inputVariant="outlined"
                                 className="text-field"
                                 value={eventDate}
                                 onChange={(date) => setEventDate(date)}
@@ -62,6 +63,7 @@ function CreateEventPage({ }) {
                                 format="yyyy/MM/dd"
                             />
                             <KeyboardTimePicker
+                                inputVariant="outlined"
                                 className="text-field"
                                 value={startTime}
                                 onChange={(time) => setStartTime(time)}
@@ -69,17 +71,19 @@ function CreateEventPage({ }) {
                                 format="hh:mm a"
                             />
                             <KeyboardTimePicker
+                                inputVariant="outlined"
                                 className="text-field"
                                 value={endTime}
                                 onChange={(time) => setEndTime(time)}
                                 label="End Time"
                                 format="hh:mm a"
                             />
-                            <Button
+                            <button className="button" onClick={onSubmit}>Create Event</button>
+                          {/*  <Button
                                 variant="contained"
                                 className="button"
                                 onClick={onSubmit}
-                            > Create Event </Button>
+                          > Create Event </Button>*/}
                         </div>
                     </div>
                 </div>

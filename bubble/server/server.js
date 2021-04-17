@@ -36,8 +36,7 @@ app.use(express.urlencoded({ extended: false}))
 app.use(cors());
 
 // Load Mongoose Models
-EventSchema = require('./api/models/EventSchema'),
-UserSchema = require('./api/models/UserSchema');
+require('./api/models/EventSchema'),
 
 
 jsonwebtoken = require("jsonwebtoken");
@@ -50,6 +49,7 @@ app.use('/api/users', UserRouter);*/
 
 require('./api/routes/authRoute')(app);
 require('./api/routes/eventRoute')(app);
+require('./api/routes/profileRoute')(app);
 
 app.use(function(req, res) {
   res.status(404).send({ url: req.originalUrl + ' not found' })
