@@ -7,14 +7,39 @@ Application is still in development, not yet hosted on Heroku.
 Bubble is an online scheduling web application for users to keep track of their meetings and daily routines
 
 ## Functions
-List all the functions with their sub functions of your application.
-1. Function #1
-	* Sub function #1
-	* Sub function #2
-2. Function #2
-	* Sub function #1
-3. Function #3
-	* ...
+
+1. Manage Account
+	* Create Account
+		- Allow users to create new accounts with their email address.
+		- Send a welcome/verification email when a user creates an account.
+	* Edit Profile
+		- Allow users to edit their personal information provided during registration, such as name, password, email, etc.
+	* Login
+		- Allow users to login using their registered email address and password.
+
+2. Manage Events
+	* Create event
+		- Allow users to add a new event with an optional deadline, color, and custom prompts for reminders.
+	* Modify event
+		- Allow users to modify existing bubbles and change any property such as the prompt, color, deadline and description.
+	* Delete event
+		- Allow users to delete an existing event.
+	* Search event
+		- Allow users to search for events by name, date, and description.
+	* Sort event
+		- Allow users to sort events based on type or importance with different colored bubbles.
+	* Recurring event
+		- Allow users to set recurring events.
+
+3. Performance
+	* Send welcome emails within 10 minutes of registration.
+	* Have an average response time that is below 5 ms.
+	* Complete an event search request within 3 seconds.
+	* Able to handle hundreds of events.
+	* Send a reminder email to the user 2 hr before their upcoming deadlines.
+
+4. Security
+	* Protect user passwords and data securely by encrypting them.
 
 ## Getting Started
 ### Installation and Setup
