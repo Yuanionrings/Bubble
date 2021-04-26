@@ -1,6 +1,6 @@
 # Bubble
 
-Still in development, application is not yet hosted on Heroku.
+Application is still in development, not yet hosted on Heroku.
 
 ## Introduction
 
