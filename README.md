@@ -1,12 +1,10 @@
 # Bubble
 
-This is a sample README file. It is required to have all sections below at the minimum but feel free to add more if you want. Also, it is recommended to follow the same formats with headers, bullet points, highlights...
-
-Here is a README.md example: https://github.com/drphamwit/swe-sample-project-github-repo/blob/master/README-Example.md
+Still in development, application is not yet hosted on Heroku.
 
 ## Introduction
 
-Briefly describe what your project is all about.
+Bubble is an online scheduling web application for users to keep track of their meetings and daily routines
 
 ## Functions
 List all the functions with their sub functions of your application.
@@ -20,9 +18,29 @@ List all the functions with their sub functions of your application.
 
 ## Getting Started
 ### Installation and Setup
-List all the steps on how to install and setup your project
+
+1. Install [Node.js](https://nodejs.org/) if you haven't already.
+
+2. Clone this repository and install its dependencies. (make sure to delete the "node modules" folders from the /bubble as well as the /bubble/server folder)
+		
+		> git clone git://github.com/drphamwit/node-login.git Bubble
+		> cd Bubble/bubble
+		> npm install
+		> cd server
+		> npm install
+
 ### Run
-List all the steps on how to run your project
+1. Open up a shell for the server.
+
+		> cd Bubble/bubble/server
+		> npm start
+
+2. Open up a second shell for the webapp.
+
+		> cd Bubble/bubble
+		> npm start
+
+3. The locally hosted web application should be automatically opened up in your browser.
 
 ## Demo video
 
@@ -31,15 +49,13 @@ Upload your demo video to youtube and put a link here. Basically, the video cont
 2. How to run the app
 3. Quick walkthrough of all the functions and their sub functions of your app one by one
 
-Please make it short and interesting!
-
 Sample: https://www.youtube.com/watch?v=Pr-JMqTkdEM
 
 How to record your screen: https://www.techradar.com/how-to/record-your-screen
 
 ## Contributors
 
-* student name (email), role
-* student name (email), role
-* ...
+* Yuan Gao (gaoy3@wit.edu), Team Lead
+* Garnet Yeates (yeatesg@wit.edu), Developer
+* Anish Menghani (menghania@wit.edu), Developer
 
