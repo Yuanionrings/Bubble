@@ -23,7 +23,7 @@ List all the functions with their sub functions of your application.
 
 2. Clone this repository and install its dependencies. (make sure to delete the "node modules" folders from the /bubble as well as the /bubble/server folder)
 		
-		> git clone git://github.com/drphamwit/node-login.git Bubble
+		> git clone https://github.com/Yuanionrings/Bubble.git Bubble
 		> cd Bubble/bubble
 		> npm install
 		> cd server
