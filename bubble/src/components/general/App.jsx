@@ -12,6 +12,7 @@ import PrivateRoute from './PrivateRoute';
 import Dashboard from '../dashboard/Dashboard';
 
 import "bootstrap/dist/css/bootstrap.min.css"
+import "./style.scss";
 
 import {
     BrowserRouter as Router,

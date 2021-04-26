@@ -39,6 +39,7 @@ export const loginUser = (userData, history) => (dispatch) => {
       setAuthToken(token);
       const decoded = jwt_decode(token);
       // Set current user
+      console.log("RECEIVED JWT TOKEN: ", decoded);
       dispatch(setCurrentUser(decoded));
       console.log("Login success, auth token set in local storage")
       history.push("/dashboard")

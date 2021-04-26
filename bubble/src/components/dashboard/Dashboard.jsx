@@ -3,11 +3,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { logoutUser } from '../../actions/userAuthActions';
-import ProfilePage from './pages/ProfilePage';
+import ProfilePage from './pages/Profile/ProfilePage';
 import Sidebar from './Sidebar';
+import Homebar from './Homebar';
 
 import "./DashboardStyle.scss"
-class Garnboard extends Component {
+import { Home } from '@material-ui/icons';
+
+class Dashboard extends Component {
     constructor() {
         super()
         this.state = {
@@ -28,27 +31,30 @@ class Garnboard extends Component {
         })
     }
 
-    render(){
+    render() {
         let { logoutUser } = this.props;
         let { pageContent: PageContent } = this.state;
         return (
-            <div className="main-container">
-                    <Sidebar logoutUser={logoutUser}setDashboardContent={this.setDashboardContent}/>
-                    <div className="content-container">
-                        <div className="content">
-                            <PageContent/>
-                        </div>
-                    </div>
+            <div className="fullscreen-container">
+                <Homebar />
+                <div className="main-container">
+                    <Sidebar
+                        logoutUser={logoutUser}
+                        currDashboardContent={this.state.pageContent}
+                        setDashboardContent={this.setDashboardContent} />
+                    <PageContent />
+                </div>
             </div>
+
         )
 
-      //  <button onClick={this.props.logoutUser}>Log Out</button>
+        //  <button onClick={this.props.logoutUser}>Log Out</button>
     }
 }
 
-const mapStateToProps = state => ({ 
+const mapStateToProps = state => ({
     auth: state.auth,
     errors: state.errors
-}); 
+});
 
-export default connect(mapStateToProps, { logoutUser })(Garnboard);
+export default connect(mapStateToProps, { logoutUser })(Dashboard);

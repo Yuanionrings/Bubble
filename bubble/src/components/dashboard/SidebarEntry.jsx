@@ -4,14 +4,20 @@ import { Transition } from 'react-transition-group'
 import { IconButton } from '@material-ui/core';
 
 export function SidebarEntry(props) {
-    let { icon: Icon, onClick } = props;
+    let { icon: Icon, onClick, currDashboardContent, dashboardContent } = props;
     let IconComponent = Icon.type;
+
+    let iconClass = "sidebar-icon" + (dashboardContent && dashboardContent === currDashboardContent ? " blue" : "");
+
+    console.log("dashboard content for this entry: ", dashboardContent);
+    console.log("curr dashboard content: ", currDashboardContent);
+
     return (
-        <div className="sidebar-tab">
+        <div className={"sidebar-tab"} >
             <EntryDescription {...props} />
             <div className="link">
                 <IconButton onClick={onClick} className="icon-button">
-                    <IconComponent {...Icon.props} className="sidebar-icon"></IconComponent>
+                    <IconComponent {...Icon.props} className={iconClass}></IconComponent>
                 </IconButton>
             </div>
         </div>
@@ -21,7 +27,7 @@ export function SidebarEntry(props) {
 function EntryDescription(props) {
 
     const sidebarStyle = {
-        transition: `padding 150ms, width 200ms, background-color 250ms linear, border 50ms linear`
+        transition: `padding 150ms, width 150ms, background-color 250ms linear, border 50ms linear`
     }
 
     const sidebarTransitionStyles = {
@@ -34,9 +40,9 @@ function EntryDescription(props) {
     let { text, isOpen, onClick } = props
 
     return (
-        <Transition in={isOpen} timeout="200ms">
+        <Transition in={isOpen} timeout={100}>
             {(state) => (
-                <div className="description" onClick={onClick} style={{
+                <div className={"description" + (props.borderTop ? " top-border" : "")} onClick={onClick} style={{
                     ...sidebarStyle,
                     ...sidebarTransitionStyles[state]
                 }}>

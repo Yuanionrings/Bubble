@@ -1,21 +1,21 @@
 'use strict';
 const { secretKey } = require('../../../config/keys')
 
-var mongoose = require('mongoose'),
+require('../models/UserSchema'); // Call require so the module loads and calls mongoose.model(..) to set up the schema
+
+const mongoose = require('mongoose'),
     jwt = require('jsonwebtoken'),
     bcrypt = require('bcrypt'),
     User = mongoose.model('User');
 
-const exp = {};
-
-exp.register = function (req, res) {
+exports.register = function (req, res) {
     let { username, password } = req.body;
     User.findOne({
         identifier: username 
     }, (err, user) => {
         if (err) // Error from MongoDB
             return res.status(500).json({ generalError: "Internal error querying MongoDB database" })
-        if (user) // User not found
+        if (user) // User exists already
             return res.status(409).json({ resetField: false, username: "A user already exists with this username"})
         
         // If we get here we are all good to save our user
@@ -34,7 +34,7 @@ exp.register = function (req, res) {
     }) 
 };
 
-exp.sign_in = function (req, res) {
+exports.sign_in = function (req, res) {
     let { username, password } = req.body;
     User.findOne({ 
         identifier: username
@@ -46,9 +46,8 @@ exp.sign_in = function (req, res) {
         if (!user.comparePassword(password)) // Invalid credentials
             return res.status(401).json({ resetField: true, password: 'Authentication failed' });
 
-        let plainObj = user.toJSON();
-        delete plainObj.identifier, plainObj.date;
-        
+        let plainObj = { _id: user.toJSON()._id }
+
         jwt.sign(plainObj,
             secretKey,
             { expiresIn: "360000s" }, // 100 hour
@@ -66,6 +65,3 @@ exp.sign_in = function (req, res) {
         return;
     });
 };
-
-
-module.exports = exp;

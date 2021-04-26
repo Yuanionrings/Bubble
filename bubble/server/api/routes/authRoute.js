@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(app) {
-    var userController = require('../controllers/userController.js');
+    const userController = require('../controllers/authController.js');
     // todoList Routes
     app.route('/auth/register')
         .post(userController.register);

@@ -4,7 +4,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const cors = require('cors')
-const bodyParser = require('body-parser');
 
 const app = express()
 
@@ -36,16 +35,21 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
 app.use(cors());
 
-User = require('./api/models/UserSchema'),
+// Load Mongoose Models
+require('./api/models/EventSchema'),
+
+
 jsonwebtoken = require("jsonwebtoken");
 
+/*
 // Routes Configuration
 //const UserRouter = require('./routes/api/users');
 const UserRouter = require('./api/routes/userRoute');
-app.use('/api/users', UserRouter);
+app.use('/api/users', UserRouter);*/
 
-var routes = require('./api/routes/userRoute');
-routes(app); // <- user routes configured here 
+require('./api/routes/authRoute')(app);
+require('./api/routes/eventRoute')(app);
+require('./api/routes/profileRoute')(app);
 
 app.use(function(req, res) {
   res.status(404).send({ url: req.originalUrl + ' not found' })
