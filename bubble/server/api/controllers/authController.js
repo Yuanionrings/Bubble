@@ -8,6 +8,7 @@ const mongoose = require('mongoose'),
     bcrypt = require('bcrypt'),
     User = mongoose.model('User');
 
+
 exports.register = function (req, res) {
     let { username, password } = req.body;
     User.findOne({

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { logoutUser } from '../../actions/userAuthActions';
-import ProfilePage from './pages/Profile/ProfilePage';
+import ProfilePage from './pages/ProfilePage';
 import Sidebar from './Sidebar';
 import Homebar from './Homebar';
 
@@ -42,7 +42,9 @@ class Dashboard extends Component {
                         logoutUser={logoutUser}
                         currDashboardContent={this.state.pageContent}
                         setDashboardContent={this.setDashboardContent} />
-                    <PageContent />
+                    <div className="page-container">
+                        <PageContent />
+                    </div>
                 </div>
             </div>
 

@@ -1,40 +1,22 @@
 import axios from 'axios';
 
-export const editUsername = (newUsername, setNewUsername, setIsEditing, updateData, setErrors) => {
-
-}
-
-export const editEmail = (newEmail, setNewEmail, setIsEditing, updateData, setErrors) => {
-    axios.post("http://localhost:4000/profile/setEmail", { email: newEmail } )
-    .then(res => {
-        console.log(res.data);
-        setTimeout(() => setIsEditing(false), 250);
-        updateData();
-    })
-    .catch(err => {
-
-    })
-}
-
-export const editFullName = (newFullName, setNewFullName, setIsEditing, updateData, setErrors) => {
-    axios.post("http://localhost:4000/profile/setFullName", { fullName: newFullName } )
+export const editAnyField = (changing, changingTo, setError, updateProfileData) => {
+    axios.post("http://localhost:4000/profile/changeProfileData", { change: { changing: changing, changingTo } })
         .then(res => {
-            console.log(res.data);
-            setTimeout(() => setIsEditing(false), 250);
-            updateData();
+            updateProfileData(false);
         })
         .catch(err => {
-
+            console.log(err);
+            updateProfileData(false);
         })
 }
 
-export const fetchProfileData = (setProfileData) => {
+export const fetchProfileData = (resetEdits, setProfileData) => {
     axios.get("http://localhost:4000/profile")
         .then(res => {
-            setProfileData(res.data)
+            setProfileData(resetEdits, res.data)
         })
         .catch(err => {
-
         })
 }
 

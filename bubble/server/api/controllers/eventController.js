@@ -1,5 +1,6 @@
 'use strict';
-const { secretKey } = require('../../../config/keys')
+const { secretKey } = require('../../../config/keys');
+const { militaryToRegular } = require('../../util/militaryToRegular');
 
 var mongoose = require('mongoose'),
     jwt = require('jsonwebtoken'),
@@ -27,7 +28,7 @@ exports.createEvent = function (req, res) {
             eventName,
         }, (err, event) => {
             if (err) // Error from MongoDB
-                return res.status(500).json({ generalError: "Internal error querying MongoDB database", ...err })
+                return res.status(500).json({ internalError: "Internal error querying MongoDB database", ...err })
             if (event) // Event with same user ID and same eventName found
                 return res.status(409).json({ eventName: `You already have an event with this name` })
 
@@ -52,3 +53,31 @@ exports.createEvent = function (req, res) {
         })
     })
 };
+
+exports.getEvents = function (req, res) {
+    let { authorization } = req.headers;
+    const [, userToken] = authorization.split(' ');
+
+    jwt.verify(userToken, secretKey, (err, verifiedToken) => {
+        if (err)
+            return res.status(401).json({ tokenError: "Invalid or expired JWT token" });
+        const { _id: userID } = verifiedToken;
+        Event.find({
+            userID,
+        }, (err, eventsQuery) => {
+            if (err) // Error from MongoDB
+                return res.status(500).json({ internalError: "Internal error querying MongoDB database", ...err })
+            let events = [];
+            for (let event of eventsQuery) {
+                event = event.toJSON();
+                delete event.userID;
+                event.startTime = militaryToRegular(event.startTime);
+                event.endTime = militaryToRegular(event.endTime);
+                events.push(event);
+            }
+            return res.json({ events })
+        })
+    });
+
+}
+

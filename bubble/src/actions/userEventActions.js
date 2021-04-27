@@ -13,3 +13,16 @@ export const createEvent = (eventObj, setErrors) => {
         }
     )
 }
+
+export const getEvents = (setEvents) => {
+    axios.get("http://localhost:4000/events")
+        .then(res => {
+            setEvents(res.data.events);
+            let events = res.data.events;
+
+        })
+        .catch(err => {
+            
+        }
+    )
+}
