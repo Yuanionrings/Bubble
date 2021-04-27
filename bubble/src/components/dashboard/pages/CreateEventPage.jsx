@@ -11,7 +11,8 @@ import {
 
 import Button from '@material-ui/core/button';
 import { createEvent, editEvent } from '../../../actions/userEventActions';
-import { regularToMilitary } from '../../../util/regularToMilitary';
+import { regularToMilitary } from '../../../util/timeUtil';
+import EventsPage from './EventsPage';
 
 const theme = createMuiTheme({
     palette: {
@@ -62,12 +63,11 @@ const useStyles = makeStyles({
     }
 });
 
-function CreateEventPage({ editingEvent }) {
-    console.log("Editing", editingEvent);
+function CreateEventPage({ editingEvent, setDashboardContent }) {
     const [eventName, setEventName] = React.useState("");
-    const [eventDate, setEventDate] = React.useState();
-    const [startTime, setStartTime] = React.useState();
-    const [endTime, setEndTime] = React.useState();
+    const [eventDate, setEventDate] = React.useState(new Date());
+    const [startTime, setStartTime] = React.useState(new Date());
+    const [endTime, setEndTime] = React.useState(new Date());
     const [errors, setErrors] = React.useState({});
 
     const action = (editingEvent ? "Edit" : "Create") + " Event";
@@ -75,24 +75,15 @@ function CreateEventPage({ editingEvent }) {
     useEffect(() => {
         if (editingEvent) {
             let { eventName, eventDate, startTime, endTime } = editingEvent;
-            console.log("eventName dddd", eventName)
-            console.log(endTime)
             setEventName(eventName)
             setEventDate(eventDate)
             let [startHour, startMin] = regularToMilitary(startTime);
-
-            console.log("dd", new Date(2000, 0, 2, startHour, startMin))
             setStartTime(new Date(1, 1, 1, startHour, startMin))
             let [endHour, endMin] = regularToMilitary(endTime);
             setEndTime(new Date(1, 1, 1, endHour, endMin))
         }
 
     }, [])
-
-    useEffect(() => {
-        console.log(new Date())
-    }
-    )
 
     const onSubmit = () => {
         let data = {
@@ -102,6 +93,7 @@ function CreateEventPage({ editingEvent }) {
             endTime: String(endTime),
         }
         !editingEvent ? createEvent(data, setErrors) : editEvent({ editing: editingEvent.eventName, ...data }, setErrors);
+        setTimeout(() => setDashboardContent(<EventsPage/>), 100)
     }
 
     return (

@@ -6,3 +6,10 @@ export function regularToMilitary (timeString) {
     m === 'AM' && hour === 12 && (hour = 0);
     return [hour, minute]
 }
+
+export function getDayIndex (dayString) {
+    switch (dayString) {
+        case 'Mon':
+            return ;
+    }
+}
