@@ -1,6 +1,6 @@
 # Bubble
 
-![bubble_logo](logo.png)
+![bubble_logo](/bubble/src/resources/logo.png)
 
 Application is still in development, not yet hosted on Heroku.
 
