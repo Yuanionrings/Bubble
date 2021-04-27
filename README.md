@@ -6,6 +6,15 @@ Application is still in development, not yet hosted on Heroku.
 
 Bubble is an online scheduling web application for users to keep track of their meetings and daily routines
 
+## Tech Stack
+
+Bubble is built with the following technologies:
+
+* Frontend: React and React Router
+* Backend: Express and Node.js
+* Database: MongoDB
+* State Management: Redux
+
 ## Functions
 
 1. Manage Account
