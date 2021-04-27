@@ -406,8 +406,35 @@ html, body, nav, ul {
         height: 100%;
 
         .v-section {
-            padding: 1rem 0rem;
             overflow-y: auto;
+        }
+
+        .icon-container {
+            min-width: 3rem;
+            min-height: 3rem;
+            display: flex;
+            justify-content: center;
+
+            .icon {
+                color: #1b1b1b;
+                font-size: 2rem !important;
+                &:hover {
+                    font-size: 2.5rem !important;
+                    color: #535353;
+                    transition: color 100ms linear, font-size 100ms ease-in-out;
+                }
+            }
+        }
+
+       
+
+        .MuiButtonBase-root.MuiIconButton-root {
+            padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+            
+        }
+
+        .h-section.manga {
+            min-height: 3rem;
         }
 
         .event-container {
@@ -415,14 +442,16 @@ html, body, nav, ul {
             border-radius: 0.5rem;
             padding: 0.5rem;
             width: 80%;
-            margin: 0.25rem;
-
-            .h-section {
-
-            }
+            margin: 0.75rem;
 
             .h1, .h2, .h3 {
                 font-family: "Slate Bold";
+            }
+
+            &:hover {
+                transition-duration: 200ms;
+                box-shadow: 0 0 1.25rem -0.25rem;
+
             }
 
         }

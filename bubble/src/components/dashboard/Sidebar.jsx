@@ -44,7 +44,7 @@ function Sidebar(props) {
                     isOpen={isOpen}
                     currDashboardContent={currDashboardContent}
                     dashboardContent={ProfilePage}
-                    onClick={() => setDashboardContent(ProfilePage)}
+                    onClick={() => setDashboardContent(<ProfilePage/>)}
                 >
                 </SidebarEntry>
                 <SidebarEntry
@@ -53,7 +53,7 @@ function Sidebar(props) {
                     isOpen={isOpen}
                     currDashboardContent={currDashboardContent}
                     dashboardContent={EventsPage}
-                    onClick={() => setDashboardContent(EventsPage)}
+                    onClick={() => setDashboardContent(<EventsPage setDashboardContent={setDashboardContent}/>)}
                 >
                 </SidebarEntry>
                 <SidebarEntry
@@ -62,7 +62,7 @@ function Sidebar(props) {
                     isOpen={isOpen}
                     currDashboardContent={currDashboardContent}
                     dashboardContent={CreateEventPage}
-                    onClick={() => setDashboardContent(CreateEventPage)}
+                    onClick={() => setDashboardContent(<CreateEventPage/>)}
                 >
                 </SidebarEntry>
             </div>

@@ -14,7 +14,7 @@ class Dashboard extends Component {
     constructor() {
         super()
         this.state = {
-            pageContent: ProfilePage,
+            pageContent: <ProfilePage/>,
         }
     }
 
@@ -43,7 +43,7 @@ class Dashboard extends Component {
                         currDashboardContent={this.state.pageContent}
                         setDashboardContent={this.setDashboardContent} />
                     <div className="page-container">
-                        <PageContent />
+                        <PageContent.type setDashboardContent={this.setDashboardContent} {...PageContent.props}/>
                     </div>
                 </div>
             </div>

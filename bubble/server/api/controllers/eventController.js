@@ -6,10 +6,40 @@ var mongoose = require('mongoose'),
     jwt = require('jsonwebtoken'),
     Event = mongoose.model('Event');
 
-exports.createEvent = function (req, res) {
+exports.createEvent = (req, res) => {
+    eventFunction(false, req, res);
+}
+
+exports.editEvent = (req, res) => {
+    eventFunction(true, req, res);
+}
+
+exports.removeEvent = (req, res) => {
+    let {eventName} = req.body;
+    verifyJWT(req, res, (verifiedToken) => {
+        const { _id: userID } = verifiedToken;
+        Event.remove({ userID, eventName }, function (err) {
+            if (err)
+                return res.status(404).json({ error: "Event Not Found"});
+            return res.json({ success: "Event Removed! "})
+        });
+    })
+}
+
+
+const verifyJWT = (req, res, success) => {
     let { authorization } = req.headers;
     const [, userToken] = authorization.split(' ');
+    jwt.verify(userToken, secretKey, (err, verifiedToken) => {
+        if (err)
+            return res.status(401).json({ tokenError: "Invalid or expired JWT token" });
+        success(verifiedToken);
+    })
+}
 
+const eventFunction = function (edit, req, res) {
+    console.log("edit???", edit)
+    console.log(req.body)
     // Parse data, TODO: do this on the client side in a controller because it's cluttered here
     let { eventName, eventDate: date, startTime: start, endTime: end } = req.body;
     let [ddd, mmm, dd, yyyy] = date.split(' ');
@@ -19,9 +49,10 @@ exports.createEvent = function (req, res) {
     endTime = endTime.split(':')[0] + ":" + endTime.split(':')[1];
     let eventDate = `${ddd} ${mmm} ${dd} ${yyyy}`;
 
-    jwt.verify(userToken, secretKey, (err, verifiedToken) => {
-        if (err)
-            return res.status(401).json({ tokenError: "Invalid or expired JWT token" });
+    if (edit)
+        eventName = req.body.editing;
+
+    verifyJWT(req, res, (verifiedToken) => {
         const { _id: userID } = verifiedToken;
         Event.findOne({
             userID, // Make sure no event exists already by this user with the same event name
@@ -29,18 +60,32 @@ exports.createEvent = function (req, res) {
         }, (err, event) => {
             if (err) // Error from MongoDB
                 return res.status(500).json({ internalError: "Internal error querying MongoDB database", ...err })
-            if (event) // Event with same user ID and same eventName found
+            if (event && !edit) // Event with same user ID and same eventName found
                 return res.status(409).json({ eventName: `You already have an event with this name` })
-
+            if (!event && edit)
+                return res.status(404).json({ internalError: "Could could not find this event" })
             // If we get here we are all good to save our event
-            let newEvent = new Event({
+            let creating = {
                 userID,
                 eventName,
                 eventDate,
                 startTime,
                 endTime,
+            }
+
+            let newEvent = new Event({
+                ...creating,
             });
-            newEvent.save((err, event) => {
+
+            if (edit) {
+                creating.eventName = req.body.eventName;
+                for (let key in creating) {
+                    console.log(`event[${key}] = ${event[key]} SET TO creating[${key}] = ${creating[key]}`)
+                    event[key] = creating[key];
+                }
+            }
+
+            const saveHandler = ((err, event) => {
                 if (err) {
                     console.log(err);
                     return res.status(500).json({
@@ -50,17 +95,14 @@ exports.createEvent = function (req, res) {
                     return res.json(event);
                 }
             });
+
+            edit ? event.save(saveHandler) : newEvent.save(saveHandler);
         })
     })
 };
 
 exports.getEvents = function (req, res) {
-    let { authorization } = req.headers;
-    const [, userToken] = authorization.split(' ');
-
-    jwt.verify(userToken, secretKey, (err, verifiedToken) => {
-        if (err)
-            return res.status(401).json({ tokenError: "Invalid or expired JWT token" });
+    verifyJWT(req, res, (verifiedToken) => {
         const { _id: userID } = verifiedToken;
         Event.find({
             userID,

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../DashboardStyle.scss'
 import TextField from '@material-ui/core/TextField';
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles'
@@ -10,7 +10,8 @@ import {
 } from '@material-ui/pickers';
 
 import Button from '@material-ui/core/button';
-import { createEvent } from '../../../actions/userEventActions';
+import { createEvent, editEvent } from '../../../actions/userEventActions';
+import { regularToMilitary } from '../../../util/regularToMilitary';
 
 const theme = createMuiTheme({
     palette: {
@@ -61,22 +62,46 @@ const useStyles = makeStyles({
     }
 });
 
-function CreateEventPage({ }) {
-    const classes = useStyles();
-
-    const [eventName, setEventName] = React.useState(null);
-    const [eventDate, setEventDate] = React.useState(new Date());
-    const [startTime, setStartTime] = React.useState(null);
-    const [endTime, setEndTime] = React.useState(null);
+function CreateEventPage({ editingEvent }) {
+    console.log("Editing", editingEvent);
+    const [eventName, setEventName] = React.useState("");
+    const [eventDate, setEventDate] = React.useState();
+    const [startTime, setStartTime] = React.useState();
+    const [endTime, setEndTime] = React.useState();
     const [errors, setErrors] = React.useState({});
 
+    const action = (editingEvent ? "Edit" : "Create") + " Event";
+
+    useEffect(() => {
+        if (editingEvent) {
+            let { eventName, eventDate, startTime, endTime } = editingEvent;
+            console.log("eventName dddd", eventName)
+            console.log(endTime)
+            setEventName(eventName)
+            setEventDate(eventDate)
+            let [startHour, startMin] = regularToMilitary(startTime);
+
+            console.log("dd", new Date(2000, 0, 2, startHour, startMin))
+            setStartTime(new Date(1, 1, 1, startHour, startMin))
+            let [endHour, endMin] = regularToMilitary(endTime);
+            setEndTime(new Date(1, 1, 1, endHour, endMin))
+        }
+
+    }, [])
+
+    useEffect(() => {
+        console.log(new Date())
+    }
+    )
+
     const onSubmit = () => {
-        createEvent({
+        let data = {
             eventName: String(eventName),
             eventDate: String(eventDate),
             startTime: String(startTime),
             endTime: String(endTime),
-        }, setErrors);
+        }
+        !editingEvent ? createEvent(data, setErrors) : editEvent({ editing: editingEvent.eventName, ...data }, setErrors);
     }
 
     return (
@@ -84,13 +109,13 @@ function CreateEventPage({ }) {
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <div className="create-event-page">
                     <div className="slate-box">
-                        <h1>Create Event</h1>
+                        <h1>{action}</h1>
                         <hr className="divider"></hr>
                         <div className="h-section spaced">
                             <CreateEventField
                                 label="Event Name"
                                 error={errors.eventName}
-                                MuiElement={<TextField onChange={(event) => setEventName(event.target.value)} />}
+                                MuiElement={<TextField value={eventName} onChange={(event) => setEventName(event.target.value)} />}
                             />
                             <CreateEventField
                                 label="Event Date"
@@ -129,7 +154,7 @@ function CreateEventPage({ }) {
                         </div>
                         <hr className="divider"></hr>
                         <div className="h-section manga normal-margin">
-                            <button className="slate-btn" onClick={onSubmit}>Create Event</button>
+                            <button className="slate-btn" onClick={onSubmit}>{action}</button>
                         </div>
                     </div>
                 </div>

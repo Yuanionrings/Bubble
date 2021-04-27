@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { getEvents } from '../../../actions/userEventActions'
+import { getEvents, removeEvent } from '../../../actions/userEventActions'
 
-function EventsPage(props) {
-    const { } = props
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
+import { IconButton } from '@material-ui/core';
+import CreateEventPage from './CreateEventPage';
 
+function EventsPage({setDashboardContent}) {
     const [events, setEvents] = useState([])
 
     useEffect(() => {
-        getEvents(setEvents);
+        loadEvents();
     }, [])
+
+    const loadEvents = () => {
+        getEvents(setEvents);
+    }
 
     return (
         <div className="events-page">
@@ -17,14 +26,14 @@ function EventsPage(props) {
                 <h1>Events</h1>
                 <hr />
                 <div className="v-section">
-                    {events.map(event => <EventView {...event} />)}
+                    {events.map(event => <EventView event={event} loadEvents={loadEvents} setDashboardContent={setDashboardContent}/>)}
                 </div>
             </div>
         </div>
     )
 }
 
-function EventView({ eventName, eventDate, startTime, endTime }) {    
+function EventView({ event, event: { eventName, eventDate, startTime, endTime }, loadEvents, setDashboardContent }) {
     return (
         <div className="h-section center-content">
             <div className="event-container">
@@ -32,7 +41,18 @@ function EventView({ eventName, eventDate, startTime, endTime }) {
                 <p>{eventDate}</p>
                 <p>{startTime}</p>
                 <p>{endTime}</p>
-                <div className="h-section manga">dd</div>
+                <div className="h-section manga">
+                    <div className="icon-container">
+                        <IconButton onClick={() => {setDashboardContent(<CreateEventPage editingEvent={event}/>)}}>
+                            <EditOutlinedIcon className="icon"></EditOutlinedIcon>
+                        </IconButton>
+                    </div>
+                    <div className="icon-container">
+                        <IconButton onClick={() => removeEvent(eventName, undefined, loadEvents)}>                        
+                        <DeleteIcon className="icon"></DeleteIcon>
+                        </IconButton>
+                    </div>
+                </div>
             </div>
         </div>
     )

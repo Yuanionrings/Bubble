@@ -6,7 +6,7 @@ import { IconButton } from '@material-ui/core';
 export function SidebarEntry(props) {
     let { icon: Icon, onClick, currDashboardContent, dashboardContent } = props;
 
-    let iconClass = "sidebar-icon" + (dashboardContent && dashboardContent === currDashboardContent ? " blue" : "");
+    let iconClass = "sidebar-icon" + (dashboardContent && dashboardContent === currDashboardContent.type ? " blue" : "");
 
     return (
         <div className={"sidebar-tab"} >
