@@ -1,6 +1,6 @@
 ![bubble_logo](/bubble/src/resources/logo.png)
 
-* Application is still in development, not yet hosted on Heroku.
+* Application is still in development, not yet hosted on Heroku.*
 
 ## Introduction
 
