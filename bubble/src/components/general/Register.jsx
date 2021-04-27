@@ -30,7 +30,6 @@ class Register extends Component {
     componentDidUpdate(prevProps) {
         if (prevProps.errors !== this.props.errors) {
             let errors = this.props.errors;
-            console.log('updating this component bc props errors changed')
             for (let key in errors) {
                 if (key in this.state && errors['resetField']) {
                     this.setState({ [key]: "" })

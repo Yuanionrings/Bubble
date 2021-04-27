@@ -14,8 +14,6 @@ var mm = String(today.getMonth() + 1).padStart(2, '0');
 var yyyy = today.getFullYear();
 var today = yyyy + '-' + mm + '-' + dd;
 
-console.log("fuck", today + 'T10:00')
-
 var currentDate = today;
 var schedulerData = [
     { startDate: today + 'T10:00', endDate: today + 'T10:30', title: 'Yoink' },
@@ -25,10 +23,21 @@ var schedulerData = [
 
 function CalendarPage({ }) {
     const [events, setEvents] = useState([])
-    
+    const [schedulerData, setSchedulerData] = useState([])
+
     useEffect(() => {
         loadEvents();
     }, [])
+
+    useEffect(() => {
+        let data = [];
+        for (let event of events) {
+            let {eventName, startTime, endTime} = event;
+            data.push({startDate: startTime, endDate: endTime, title: eventName })
+        }
+        console.log(data)
+        setSchedulerData(data);
+    }, [events])
     
     const loadEvents = () => {
         getEvents(setEvents);
@@ -44,8 +53,8 @@ function CalendarPage({ }) {
                         /> */}
 
                         <WeekView
-                            startDayHour={9}
-                            endDayHour={21}
+                            startDayHour={0}
+                            endDayHour={23}
                         />
 
                         <Appointments />

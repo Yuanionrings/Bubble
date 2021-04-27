@@ -1,6 +1,5 @@
 'use strict';
 const { secretKey } = require('../../../config/keys');
-const { militaryToRegular } = require('../../util/militaryToRegular');
 
 var mongoose = require('mongoose'),
     jwt = require('jsonwebtoken'),
@@ -38,16 +37,8 @@ const verifyJWT = (req, res, success) => {
 }
 
 const eventFunction = function (edit, req, res) {
-    console.log("edit???", edit)
-    console.log(req.body)
     // Parse data, TODO: do this on the client side in a controller because it's cluttered here
-    let { eventName, eventDate: date, startTime: start, endTime: end } = req.body;
-    let [ddd, mmm, dd, yyyy] = date.split(' ');
-    let [, , , , startTime] = start.split(' ');
-    startTime = startTime.split(':')[0] + ":" + startTime.split(':')[1];
-    let [, , , , endTime] = end.split(' ');
-    endTime = endTime.split(':')[0] + ":" + endTime.split(':')[1];
-    let eventDate = `${ddd} ${mmm} ${dd} ${yyyy}`;
+    let { eventName, eventDate, startTime, endTime } = req.body;
 
     if (edit)
         eventName = req.body.editing;
@@ -80,7 +71,6 @@ const eventFunction = function (edit, req, res) {
             if (edit) {
                 creating.eventName = req.body.eventName;
                 for (let key in creating) {
-                    console.log(`event[${key}] = ${event[key]} SET TO creating[${key}] = ${creating[key]}`)
                     event[key] = creating[key];
                 }
             }
@@ -113,8 +103,6 @@ exports.getEvents = function (req, res) {
             for (let event of eventsQuery) {
                 event = event.toJSON();
                 delete event.userID;
-                event.startTime = militaryToRegular(event.startTime);
-                event.endTime = militaryToRegular(event.endTime);
                 events.push(event);
             }
             return res.json({ events })

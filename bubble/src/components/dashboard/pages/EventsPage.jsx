@@ -6,6 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { IconButton } from '@material-ui/core';
 import CreateEventPage from './CreateEventPage';
+import { militaryToRegular } from '../../../util/timeUtil';
 
 function EventsPage({setDashboardContent}) {
     const [events, setEvents] = useState([])
@@ -16,6 +17,7 @@ function EventsPage({setDashboardContent}) {
 
     const loadEvents = () => {
         getEvents(setEvents);
+
     }
 
     return (
@@ -32,6 +34,10 @@ function EventsPage({setDashboardContent}) {
 }
 
 function EventView({ event, event: { eventName, eventDate, startTime, endTime }, loadEvents, setDashboardContent }) {
+    startTime = militaryToRegular(`${startTime.getHours()}:${startTime.getMinutes()}`)
+    endTime = militaryToRegular(`${endTime.getHours()}:${endTime.getMinutes()}`)
+    let [month, day, year] = String(eventDate).split(' ');
+    eventDate = `${month} ${day} ${year}`
     return (
         <div className="h-section center-content">
             <div className="event-container">
@@ -46,7 +52,7 @@ function EventView({ event, event: { eventName, eventDate, startTime, endTime },
                         </IconButton>
                     </div>
                     <div className="icon-container">
-                        <IconButton onClick={() => removeEvent(eventName, undefined, loadEvents)}>                        
+                        <IconButton onClick={() => removeEvent(eventName, loadEvents)}>                        
                         <DeleteIcon className="icon"></DeleteIcon>
                         </IconButton>
                     </div>

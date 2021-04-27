@@ -77,23 +77,32 @@ function CreateEventPage({ editingEvent, setDashboardContent }) {
             let { eventName, eventDate, startTime, endTime } = editingEvent;
             setEventName(eventName)
             setEventDate(eventDate)
-            let [startHour, startMin] = regularToMilitary(startTime);
-            setStartTime(new Date(1, 1, 1, startHour, startMin))
-            let [endHour, endMin] = regularToMilitary(endTime);
-            setEndTime(new Date(1, 1, 1, endHour, endMin))
+            setStartTime(startTime)
+            setEndTime(endTime)
         }
-
     }, [])
 
     const onSubmit = () => {
+        if (!startTime)
+            setErrors({ startTime: "Invalid Start Time" })
+        if (!endTime)
+            setErrors({ endTime: "Invalid End Time" })
+        if (!eventName)
+            setErrors({ eventName: "Enter Event Name" })
+        startTime.setDate(eventDate.getDate());
+        endTime.setDate(eventDate.getDate());
+        startTime.getFullYear(eventDate.getFullYear());
+        endTime.getFullYear(eventDate.getFullYear());
+        startTime.setMonth(eventDate.getMonth());
+        endTime.setMonth(eventDate.getMonth());
         let data = {
-            eventName: String(eventName),
-            eventDate: String(eventDate),
-            startTime: String(startTime),
-            endTime: String(endTime),
+            eventName,
+            eventDate,
+            startTime,
+            endTime,
         }
-        !editingEvent ? createEvent(data, setErrors) : editEvent({ editing: editingEvent.eventName, ...data }, setErrors);
-        setTimeout(() => setDashboardContent(<EventsPage/>), 100)
+        let onSuccess = () => setTimeout(() => setDashboardContent(<EventsPage />), 500)
+        !editingEvent ? createEvent(data, setErrors, onSuccess) : editEvent({ editing: editingEvent.eventName, ...data }, setErrors, onSuccess);
     }
 
     return (
@@ -111,6 +120,7 @@ function CreateEventPage({ editingEvent, setDashboardContent }) {
                             />
                             <CreateEventField
                                 label="Event Date"
+                                error={errors.eventDate}
                                 MuiElement={
                                     <KeyboardDatePicker
                                         inputVariant="outlined"
@@ -125,6 +135,7 @@ function CreateEventPage({ editingEvent, setDashboardContent }) {
                         <div className="h-section spaced">
                             <CreateEventField
                                 label="Start Time"
+                                error={errors.startTime}
                                 MuiElement={
                                     <KeyboardTimePicker
                                         inputVariant="outlined"
@@ -135,6 +146,7 @@ function CreateEventPage({ editingEvent, setDashboardContent }) {
                             />
                             <CreateEventField
                                 label="End Time"
+                                error={errors.endTime}
                                 MuiElement={
                                     <KeyboardTimePicker
                                         inputVariant="outlined"

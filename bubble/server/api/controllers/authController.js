@@ -14,6 +14,7 @@ exports.register = function (req, res) {
     User.findOne({
         identifier: username 
     }, (err, user) => {
+        console.log(err)
         if (err) // Error from MongoDB
             return res.status(500).json({ generalError: "Internal error querying MongoDB database" })
         if (user) // User exists already
@@ -24,6 +25,7 @@ exports.register = function (req, res) {
         newUser.hash_password = bcrypt.hashSync(password, 10);
         newUser.save(function (err, user) {
             if (err) {
+                console.log(err)
                 return res.status(500).json({
                     generalError: "Internal error saving user to MongoDB database"
                 });

@@ -25,7 +25,6 @@ const UserSchema = new Schema({
     email:{
         type: String,
         required: true,
-        unique: true,
         lowercase: true,
         trim: true,
     },
@@ -35,7 +34,7 @@ const UserSchema = new Schema({
     date:{
         type: Date,
         default: Date.now
-    }
+    },
 })
 
 UserSchema.methods.comparePassword = function(password) {
