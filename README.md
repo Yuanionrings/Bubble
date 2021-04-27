@@ -28,13 +28,13 @@ Bubble is built with the following technologies:
 
 2. Manage Events
 	* Create event
-		- Allow users to add a new event with an optional deadline, color, and custom prompts for reminders.
+		- Allow users to add new events with an optional deadline, color, and custom prompts for reminders.
 	* Modify event
-		- Allow users to modify existing bubbles and change any property such as the prompt, color, deadline and description.
+		- Allow users to modify existing events and change any property such as the prompt, color, deadline and description.
 	* View Event
-		- Allow users to view existing bubbles 
+		- Allow users to view existing events.
 	* Delete event
-		- Allow users to delete an existing event.
+		- Allow users to delete an existing events.
 	* Search event
 		- Allow users to search for events by name, date, and description.
 	* Sort event
