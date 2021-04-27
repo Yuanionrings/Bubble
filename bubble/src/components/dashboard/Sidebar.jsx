@@ -1,6 +1,6 @@
 // src/components/Sidebar.js
 import React, { Component } from 'react'
-import { SidebarLeft, SidebarRight, SidebarEntry } from './SidebarEntry'
+import { SidebarEntry } from './SidebarEntry'
 import MenuOpenRoundedIcon from '@material-ui/icons/MenuOpenRounded';
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
@@ -10,7 +10,7 @@ import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import ProfilePage from './pages/Profile/ProfilePage';
+import ProfilePage from './pages/ProfilePage';
 import CreateEventPage from './pages/CreateEventPage';
 import EventsPage from './pages/EventsPage';
 

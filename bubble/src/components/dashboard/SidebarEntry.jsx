@@ -5,19 +5,15 @@ import { IconButton } from '@material-ui/core';
 
 export function SidebarEntry(props) {
     let { icon: Icon, onClick, currDashboardContent, dashboardContent } = props;
-    let IconComponent = Icon.type;
 
     let iconClass = "sidebar-icon" + (dashboardContent && dashboardContent === currDashboardContent ? " blue" : "");
-
-    console.log("dashboard content for this entry: ", dashboardContent);
-    console.log("curr dashboard content: ", currDashboardContent);
 
     return (
         <div className={"sidebar-tab"} >
             <EntryDescription {...props} />
             <div className="link">
                 <IconButton onClick={onClick} className="icon-button">
-                    <IconComponent {...Icon.props} className={iconClass}></IconComponent>
+                    <Icon.type {...Icon.props} className={iconClass}></Icon.type>
                 </IconButton>
             </div>
         </div>

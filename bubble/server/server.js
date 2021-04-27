@@ -21,14 +21,6 @@ const option = { // Something for later maybe???? can be used in mongoose.connec
 // Connect to MongoDB
 mongoose.connect(process.env.DATABASE_ACCESS, () => console.log('[SERVER] MongoDB successfully connected'))
 
-// Activate Bodyparser for routes to accept JSON
-app.use(express.json())
-
-
-app.use(cors())
-
-// NEW NEW (GARN)
-
 // Bodyparser middleware for routes to accept JSON
 
 app.use(express.json())
